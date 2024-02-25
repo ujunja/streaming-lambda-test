@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+      "target": "es2020",
+      "strict": true,
+      "preserveConstEnums": true,
+      "sourceMap": false,
+      "module":"es2015",
+      "moduleResolution":"node",
+      "esModuleInterop": true, 
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "declaration": true,
+      // 오로지 .d.ts 파일만 생성하고 .js 파일은 출력에서 제외
+      "emitDeclarationOnly": true,
+      // output directory name
+      "outDir": "types",
+      "declarationMap": true
+    },
+    "tsd": {
+      "testFiles": [
+        "types/**/*.test-d.ts"
+      ]
+    },
+    "exclude": ["node_modules", "**/*.test.ts"]
+  }
