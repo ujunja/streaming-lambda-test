@@ -22,8 +22,8 @@ Resources:
       CodeUri: app/
       Environment:
         Variables:
-          MY_AWS_ACCESS_KEY: 'AKIAXYKJTWPAP2Z5JBHV'
-          MY_AWS_SECRET_KEY: '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'
+          MY_AWS_ACCESS_KEY: ''
+          MY_AWS_SECRET_KEY: ''
       Policies:
       - Statement:
         - Sid: S3PutObjectPolicy
