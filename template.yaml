@@ -20,10 +20,12 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: app/
+      MemorySize: 1024
       Environment:
         Variables:
-          MY_AWS_ACCESS_KEY: 'AKIAXYKJTWPAP2Z5JBHV'
-          MY_AWS_SECRET_KEY: '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'
+          MY_AWS_ACCESS_KEY: ''
+          MY_AWS_SECRET_KEY: ''
+          MY_BUCKET_NAME: ''
       Policies:
       - Statement:
         - Sid: S3PutObjectPolicy
@@ -54,7 +56,12 @@ Resources:
         Sourcemap: true
         EntryPoints: 
         - app.ts
-
+  MyFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      TargetFunctionArn: !Ref FirstStreamingLambda
+      AuthType: AWS_IAM
+      InvokeMode: RESPONSE_STREAM
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
@@ -66,6 +73,9 @@ Outputs:
   FirstStreamingFunction:
     Description: "Hello World Lambda Function ARN"
     Value: !GetAtt FirstStreamingLambda.Arn
+  StreamingFunctionURL:
+    Description: "Streaming Lambda Function URL"
+    Value: !GetAtt MyFunctionUrl.FunctionUrl
 # FirstStreamingLambdaIamRole:
 #     Description: "Implicit IAM Role created for Hello World function"
 #     Value: !GetAtt FirstStreamingLambdaRole.Arn
